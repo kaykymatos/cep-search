@@ -1,0 +1,41 @@
+<div style="margin-top: 10%; margin-bottom: 30%">
+  <form [formGroup]="profileForm" class="profile-form">
+    <div class="form-group col-5" style="text-align: start">
+      <label for="cepInput">CEP</label>
+      <input
+        type="text"
+        #cep
+        mask="00000-000"
+        class="form-control mb-2"
+        id="cepInput"
+        aria-describedby="cepHelp"
+        placeholder="Enter your CEP"
+      />
+    </div>
+    @if (erro!=null) {
+    <span style="color: red">{{erro}}</span><br />
+    }
+
+    <button type="submit" (click)="getCep(cep.value)" class="btn btn-primary">
+      Submit
+    </button>
+    @if(viacepResponse!=null){
+
+    <div class="address-details mt-3">
+      <h3>Detalhes do endereço</h3>
+      <ul class="list-unstyled">
+        <li><strong>CEP:</strong> {{ viacepResponse.cep }}</li>
+        <li><strong>Rua:</strong> {{ viacepResponse.logradouro }}</li>
+        <li><strong>Complemento:</strong> {{ viacepResponse.complemento }}</li>
+        <li><strong>Bairro:</strong> {{ viacepResponse.bairro }}</li>
+        <li><strong>Cidade:</strong> {{ viacepResponse.localidade }}</li>
+        <li><strong>Estado:</strong> {{ viacepResponse.uf }}</li>
+        <li><strong>IBGE:</strong> {{ viacepResponse.ibge }}</li>
+        <li><strong>GIA:</strong> {{ viacepResponse.gia }}</li>
+        <li><strong>DDD:</strong> {{ viacepResponse.ddd }}</li>
+        <li><strong>SIAFI:</strong> {{ viacepResponse.siafi }}</li>
+      </ul>
+    </div>
+    }
+  </form>
+</div>
